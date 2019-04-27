@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "248707691628",
+    "firebase_url": "https://carrental-4561a.firebaseio.com",
+    "project_id": "carrental-4561a",
+    "storage_bucket": "carrental-4561a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:248707691628:android:6058e52fd0a5dcc8",
+        "android_client_info": {
+          "package_name": "com.android.carrental"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "248707691628-ksmnacvp7daehaqlqmqp4d687btqt7gl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCO2aadtHT3KGXDXMI7bb8yVSwi-dwpNoI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "248707691628-ksmnacvp7daehaqlqmqp4d687btqt7gl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
