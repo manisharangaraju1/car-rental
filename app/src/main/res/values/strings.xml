@@ -7,5 +7,8 @@
     <string name="default_end_time">5:00 PM</string>
     <string name="default_date">26 Apr 19</string>
     <string name="search_cars">Search</string>
+    <string name="vehicle_filter">Vehicle Filter</string>
+    <string name="all_type_cars">All Type Cars</string>
+
 
 </resources>

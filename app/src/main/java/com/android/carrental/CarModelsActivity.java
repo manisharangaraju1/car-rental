@@ -4,48 +4,45 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-public class NearbyCarStations extends AppCompatActivity {
+public class CarModelsActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
-    private List<Station> stations;
-    private StationAdapter stationAdapter;
+    private List<CarModel> carModels;
+    private CarModelsAdapter carModelsAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_nearby_car_stations);
-        recyclerView = findViewById(R.id.staions_recycler_view);
+        setContentView(R.layout.activity_car_models);
+        recyclerView = findViewById(R.id.car_models_recycler_view);
         initWidgets();
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("stations");
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("carmodels");
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    Station user = snapshot.getValue(Station.class);
-                    stations.add(user);
+                    CarModel carModel = snapshot.getValue(CarModel.class);
+                    carModels.add(carModel);
                 }
-                Collections.sort(stations, new Comparator<Station>() {
-                    @Override
-                    public int compare(Station station1, Station station2) {
-                        return Double.compare(Double.parseDouble(station1.getDistance()), (Double.parseDouble(station2.getDistance())));
-                    }
-                });
-                stationAdapter.notifyDataSetChanged();
+
+                carModelsAdapter.notifyDataSetChanged();
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {
@@ -58,10 +55,9 @@ public class NearbyCarStations extends AppCompatActivity {
     private void initWidgets() {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-        stations = new ArrayList<>();
-        stationAdapter = new StationAdapter(getApplicationContext(), stations);
-        stationAdapter.notifyDataSetChanged();
-        recyclerView.setAdapter(stationAdapter);
+        carModels = new ArrayList<>();
+        carModelsAdapter = new CarModelsAdapter(getApplicationContext(), carModels);
+        carModelsAdapter.notifyDataSetChanged();
+        recyclerView.setAdapter(carModelsAdapter);
     }
-
 }

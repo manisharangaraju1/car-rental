@@ -24,7 +24,7 @@
                 android:layout_weight="1"
                 android:tint="@color/location"
                 android:src="@drawable/ic_location_on_black_24dp" />
-            <!---->
+
 
 
             <LinearLayout
