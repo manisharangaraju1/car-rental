@@ -1,4 +1,4 @@
-package com.android.carrental;
+package com.android.carrental.model;
 
 public class Car {
 

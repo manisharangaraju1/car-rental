@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:weightSum="11"
-    tools:context=".CarSearchActivity">
+    tools:context=".CarOptionsFilter">
 
     <LinearLayout
         android:id="@+id/date_picker"
@@ -26,11 +26,15 @@
             android:text="@string/date_label"
             android:textSize="18sp" />
 
-        <TextView
+        <Button
             android:layout_width="0dp"
+            android:id="@+id/date_selector"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="right|center"
+            android:focusable="false"
+            android:background="@android:color/transparent"
+            android:textColor="@color/location"
             android:text="@string/default_date"
             android:textSize="18sp" />
     </LinearLayout>
@@ -40,7 +44,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_margin="3dp"
-        android:layout_weight="1.2"
+        android:layout_weight="1.5"
         android:orientation="horizontal"
         android:weightSum="2">
 
@@ -58,11 +62,15 @@
                 android:text="@string/start_time_label"
                 android:textSize="18sp" />
 
-            <TextView
+            <Button
                 android:id="@+id/start_time"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:focusable="false"
+                android:gravity="left|center"
+                android:background="@android:color/transparent"
+                android:textColor="@color/location"
                 android:text="@string/default_start_time"
                 android:textSize="18sp" />
 
@@ -83,12 +91,15 @@
                 android:text="@string/end_time_label"
                 android:textSize="18sp" />
 
-            <TextView
+            <Button
                 android:id="@+id/end_time"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:gravity="right"
+                android:gravity="right|center"
+                android:focusable="false"
+                android:background="@android:color/transparent"
+                android:textColor="@color/location"
                 android:text="@string/default_end_time"
                 android:textSize="18sp" />
         </LinearLayout>

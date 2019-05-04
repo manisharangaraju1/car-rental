@@ -1,9 +1,13 @@
-package com.android.carrental;
+package com.android.carrental.view;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+
+import com.android.carrental.R;
+import com.android.carrental.adapter.StationAdapter;
+import com.android.carrental.model.Station;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
