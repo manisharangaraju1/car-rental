@@ -28,6 +28,11 @@ public class Station {
         return address;
     }
 
+    @Override
+    public String toString() {
+        return address;
+    }
+
     public String getCity() {
         return city;
     }
