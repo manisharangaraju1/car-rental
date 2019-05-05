@@ -1,3 +1,33 @@
 <resources>
     <string name="app_name">Car Rental</string>
+    <string name="date_label">Date</string>
+    <string name="start_time_label">Start Time</string>
+    <string name="end_time_label">End Time</string>
+    <string name="default_start_time">4:00 PM</string>
+    <string name="default_end_time">5:00 PM</string>
+    <string name="default_date">26 Apr 19</string>
+    <string name="search_cars">Search</string>
+    <string name="vehicle_filter">Vehicle Filter</string>
+    <string name="all_type_cars">All Type Cars</string>
+
+    <string name="email">abc@example.com</string>
+    <string name="password">password</string>
+    <string name="login">Login</string>
+    <string name="signup">SignUp Here!</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+    <string name="name">Full Name</string>
+    <string name="address_hint">Enter Your Address Here</string>
+    <string name="phone_number">#Phone Number</string>
+    <string name="card_id">#Card_ID that you received through email</string>
+    <string name="resend_card_id">Resend Card ID</string>
+    <string name="input_error_name">Please enter your Name</string>
+    <string name="input_error_nick_name">Please enter your Nick Name</string>
+    <string name="input_error_email">Please enter your email address</string>
+    <string name="input_error_email_invalid">Please enter a valid email address</string>
+    <string name="input_error_password">Please enter your password</string>
+    <string name="input_error_password_length">Password Length should be atleast 6 characters</string>
 </resources>
+
+
+
