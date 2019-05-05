@@ -1,6 +1,11 @@
 package com.android.carrental.model;
 
-public class CarModel {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import java.io.Serializable;
+
+public class CarModel implements Serializable {
 
     private String name;
 
@@ -20,4 +25,5 @@ public class CarModel {
     public String toString() {
         return name;
     }
+
 }

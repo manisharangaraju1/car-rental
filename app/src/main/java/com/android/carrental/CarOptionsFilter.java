@@ -1,14 +1,22 @@
 package com.android.carrental;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.content.res.Resources;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.NumberPicker;
+import android.widget.TextView;
 import android.widget.TimePicker;
+
+import com.android.carrental.model.CarModel;
+import com.android.carrental.view.CarModels;
 
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
@@ -17,16 +25,22 @@ import java.util.Date;
 
 public class CarOptionsFilter extends AppCompatActivity implements View.OnClickListener {
 
+    private static final String AM = "AM";
+    private static final String PM = "PM";
+    private static String TIME_AM_PM = "";
+    private static final String TIME_SEPARATOR = ":00";
+    private static final String TIME_DIVIDER = "12";
+    public static final String DATE_FORMAT = "dd MMM yyyy";
     private Button search_cars;
     private Button date_selector;
     private Button start_time_selector;
     private Button end_time_selector;
+    private Button car_type_selector;
     private DatePickerDialog datePickerDialog;
     private Calendar calendar;
-    private static final int INTERVAL = 60;
-    private TimePicker picker;
-    private NumberPicker minutePicker;
-    private static final DecimalFormat FORMATTER = new DecimalFormat("00");
+    private TimePickerDialog timePickerDialog;
+    private TextView car_type;
+    private static final int REQUEST_CODE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,11 +50,14 @@ public class CarOptionsFilter extends AppCompatActivity implements View.OnClickL
         date_selector = (Button) findViewById(R.id.date_selector);
         start_time_selector = (Button) findViewById(R.id.start_time);
         end_time_selector = (Button) findViewById(R.id.end_time);
+        car_type_selector = (Button) findViewById(R.id.car_type_selector);
+        car_type = (TextView) findViewById(R.id.car_type);
         calendar = Calendar.getInstance();
         search_cars.setOnClickListener(this);
         date_selector.setOnClickListener(this);
         start_time_selector.setOnClickListener(this);
         end_time_selector.setOnClickListener(this);
+        car_type_selector.setOnClickListener(this);
     }
 
     @Override
@@ -55,13 +72,35 @@ public class CarOptionsFilter extends AppCompatActivity implements View.OnClickL
             case R.id.end_time:
                 selectEndTime();
                 break;
+            case R.id.car_type_selector:
+                selectCarType();
+                break;
         }
     }
 
+    private void selectCarType() {
+        Intent intent = new Intent(this, CarModels.class);
+        startActivityForResult(intent, REQUEST_CODE);
+    }
+
     private void selectStartTime() {
+        timePickerDialog = new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
+            @Override
+            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                start_time_selector.setText(formatTime(hourOfDay));
+            }
+        }, calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), false);
+        timePickerDialog.show();
     }
 
     private void selectEndTime() {
+        timePickerDialog = new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
+            @Override
+            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                end_time_selector.setText(formatTime(hourOfDay));
+            }
+        }, calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), true);
+        timePickerDialog.show();
     }
 
     private void selectDate() {
@@ -79,32 +118,27 @@ public class CarOptionsFilter extends AppCompatActivity implements View.OnClickL
         cal.setTimeInMillis(0);
         cal.set(year, month, day);
         Date date = cal.getTime();
-        SimpleDateFormat sdf = new SimpleDateFormat("dd MMM yyyy");
+        SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT);
         return sdf.format(date);
     }
 
-    public void setMinutePicker() {
-        int numValues = 60 / INTERVAL;
-        String[] displayedValues = new String[numValues];
-        for (int i = 0; i < numValues; i++) {
-            displayedValues[i] = FORMATTER.format(i * INTERVAL);
-        }
-
-        View minute = picker.findViewById(Resources.getSystem().getIdentifier("minute", "id", "android"));
-        if ((minute != null) && (minute instanceof NumberPicker)) {
-            minutePicker = (NumberPicker) minute;
-            minutePicker.setMinValue(0);
-            minutePicker.setMaxValue(numValues - 1);
-            minutePicker.setDisplayedValues(displayedValues);
-        }
+    private String formatTime(int hour) {
+        Calendar datetime = Calendar.getInstance();
+        datetime.set(Calendar.HOUR_OF_DAY, hour);
+        if (datetime.get(Calendar.AM_PM) == Calendar.AM)
+            TIME_AM_PM = AM;
+        else if (datetime.get(Calendar.AM_PM) == Calendar.PM)
+            TIME_AM_PM = PM;
+        String strHrsToShow = (datetime.get(Calendar.HOUR) == 0) ? TIME_DIVIDER : datetime.get(Calendar.HOUR) + "";
+        return strHrsToShow + TIME_SEPARATOR + " " + TIME_AM_PM;
     }
 
-    public int getMinute() {
-        if (minutePicker != null) {
-            return (minutePicker.getValue() * INTERVAL);
-        } else {
-            return picker.getCurrentMinute();
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_CODE && resultCode == Activity.RESULT_OK) {
+            CarModel carModel = (CarModel) data.getSerializableExtra("carmodel");
+            car_type.setText(carModel.getName());
         }
     }
-
 }
