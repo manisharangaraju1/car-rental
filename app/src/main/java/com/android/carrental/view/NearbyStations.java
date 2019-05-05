@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
+import android.widget.Spinner;
 
 import com.android.carrental.help.Help;
 import com.android.carrental.R;
@@ -27,20 +28,22 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-public class NearbyStations extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+public class NearbyStations extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
     private RecyclerView recyclerView;
     private List<Station> stations;
     private StationAdapter stationAdapter;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        mDrawerLayout = (DrawerLayout)findViewById(R.id.drawerLayout);
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-        mToggle = new ActionBarDrawerToggle(this,mDrawerLayout,R.string.open,R.string.close);
+        mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close);
         mDrawerLayout.addDrawerListener(mToggle);
         mToggle.syncState();
 
@@ -53,9 +56,9 @@ public class NearbyStations extends AppCompatActivity implements NavigationView.
 
     @Override
     public void onBackPressed() {
-        if(mDrawerLayout.isDrawerOpen(GravityCompat.START)){
+        if (mDrawerLayout.isDrawerOpen(GravityCompat.START)) {
             mDrawerLayout.closeDrawer(GravityCompat.START);
-        }else{
+        } else {
             super.onBackPressed();
 
         }
@@ -63,7 +66,7 @@ public class NearbyStations extends AppCompatActivity implements NavigationView.
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if(mToggle.onOptionsItemSelected(item)){
+        if (mToggle.onOptionsItemSelected(item)) {
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -71,14 +74,18 @@ public class NearbyStations extends AppCompatActivity implements NavigationView.
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-        switch(menuItem.getItemId()){
-            case R.id.nav_help: startActivity(new Intent(NearbyStations.this, Help.class));break;
+        switch (menuItem.getItemId()) {
+            case R.id.nav_help:
+                startActivity(new Intent(NearbyStations.this, Help.class));
+                break;
         }
         return false;
     }
+
     @Override
     protected void onStart() {
         super.onStart();
+        initWidgets();
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("stations");
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -95,12 +102,14 @@ public class NearbyStations extends AppCompatActivity implements NavigationView.
                 });
                 stationAdapter.notifyDataSetChanged();
             }
+
             @Override
             public void onCancelled(DatabaseError databaseError) {
 
             }
         });
     }
+
     private void initWidgets() {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));

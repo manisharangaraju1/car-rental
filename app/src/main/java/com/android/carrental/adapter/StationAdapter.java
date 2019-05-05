@@ -50,7 +50,7 @@ public class StationAdapter extends RecyclerView.Adapter<StationAdapter.StationV
 
     private void openSelectedStationDetails(Station station){
         Intent intent = new Intent(context, CarOptionsFilter.class);
-        intent.putExtra("selectedStaionDetails", station);
+        intent.putExtra("selectedCarDetails", station);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(intent);
     }

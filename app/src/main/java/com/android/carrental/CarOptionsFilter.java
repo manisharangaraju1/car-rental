@@ -8,21 +8,32 @@ import android.content.res.Resources;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.LinearLayout;
 import android.widget.NumberPicker;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
 import com.android.carrental.model.CarModel;
 import com.android.carrental.model.Station;
 import com.android.carrental.view.CarModels;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
+import java.util.List;
 
 public class CarOptionsFilter extends AppCompatActivity implements View.OnClickListener {
 
@@ -43,7 +54,9 @@ public class CarOptionsFilter extends AppCompatActivity implements View.OnClickL
     private static final String TIME_DIVIDER = "12";
     public static final String DATE_FORMAT = "dd MMM yyyy";
     private static final int REQUEST_CODE = 1;
+    private Spinner car_stations_spinner_filter;
     private Station selectedStation;
+    private List<Station> stations;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +68,8 @@ public class CarOptionsFilter extends AppCompatActivity implements View.OnClickL
         end_time_selector = (Button) findViewById(R.id.end_time);
         car_type_selector = (Button) findViewById(R.id.car_type_selector);
         car_type = (TextView) findViewById(R.id.car_type);
+        car_stations_spinner_filter = (Spinner) findViewById(R.id.car_stations_spinner_filter);
+        stations = new ArrayList<>();
         calendar = Calendar.getInstance();
         search_cars.setOnClickListener(this);
         date_selector.setOnClickListener(this);
@@ -62,8 +77,9 @@ public class CarOptionsFilter extends AppCompatActivity implements View.OnClickL
         end_time_selector.setOnClickListener(this);
         car_type_selector.setOnClickListener(this);
         selectedStation = getSelectedStation();
-        getSupportActionBar().setTitle("Choose your timings");
+        getSupportActionBar().setTitle("Choose Timings");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        fetchStations();
     }
 
     private Station getSelectedStation() {
@@ -151,6 +167,36 @@ public class CarOptionsFilter extends AppCompatActivity implements View.OnClickL
         if (requestCode == REQUEST_CODE && resultCode == Activity.RESULT_OK) {
             CarModel carModel = (CarModel) data.getSerializableExtra("carmodel");
             car_type.setText(carModel.getName());
+        }
+    }
+
+    private void fetchStations() {
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("stations");
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    Station station = snapshot.getValue(Station.class);
+                    stations.add(station);
+                }
+                ArrayAdapter<Station> stationArrayAdapter = new ArrayAdapter<Station>(getApplicationContext(),
+                        android.R.layout.simple_spinner_dropdown_item, stations);
+                stationArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                car_stations_spinner_filter.setAdapter(stationArrayAdapter);
+                setSelectedStation();
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    private void setSelectedStation() {
+        for (int index = 0; index < stations.size(); index++) {
+            if (selectedStation.getId().equals(stations.get(index).getId())) {
+                car_stations_spinner_filter.setSelection(index);
+            }
         }
     }
 

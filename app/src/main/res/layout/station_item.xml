@@ -23,6 +23,7 @@
                 android:layout_height="30dp"
                 android:layout_margin="10dp"
                 android:layout_weight="1"
+                android:gravity="left|center"
                 android:tint="@color/location"
                 android:src="@drawable/ic_location_on_black_24dp" />
 
