@@ -14,18 +14,31 @@
 
         </activity>
         <activity android:name=".admin.AddStation" />
+<<<<<<< HEAD
         <activity android:name=".CarOptionsFilter" android:parentActivityName=".view.NearbyStations"/>
         <activity android:name=".view.CarModels" android:parentActivityName=".CarOptionsFilter"/>
         <activity android:name=".userauth.LoginActivity">
+=======
+        <activity android:name=".CarOptionsFilter" android:parentActivityName=".HomeActivity"/>
+        <activity android:name=".view.CarModels" android:parentActivityName=".CarOptionsFilter"/>
+        <activity android:name=".LoginActivity">
+>>>>>>> 428e233853b3622b69c26f3f2b14f999d00a4c38
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+<<<<<<< HEAD
         <activity android:name=".view.NearbyStations" />
         <activity android:name=".userauth.SignUpActivity" />
         <activity android:name=".help.Help"
             android:parentActivityName=".view.NearbyStations">
+=======
+        <activity android:name=".HomeActivity" />
+        <activity android:name=".SignUpActivity" />
+        <activity android:name=".HelpActivity"
+            android:parentActivityName=".HomeActivity">
+>>>>>>> 428e233853b3622b69c26f3f2b14f999d00a4c38
         </activity>
     </application>
 
