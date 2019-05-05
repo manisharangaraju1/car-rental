@@ -35,7 +35,7 @@ public class AddCarModel extends AppCompatActivity implements View.OnClickListen
 
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
         String id = databaseReference.push().getKey();
-        CarModel carModel = new CarModel(model_name.getText().toString());
+        CarModel carModel = new CarModel(model_name.getText().toString(),model_name.getText().toString());
         databaseReference.child("carmodels").child(id).setValue(carModel).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {

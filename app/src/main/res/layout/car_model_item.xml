@@ -19,6 +19,12 @@ android:orientation="horizontal">
             android:textStyle="bold"
             android:background="@drawable/border"
             android:layout_height="60dp" />
+        <ImageView
+            android:id="@+id/car_model_image"
+            android:layout_marginTop="1dp"
+            android:layout_width="100dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="300dp"/>
 
 
 
