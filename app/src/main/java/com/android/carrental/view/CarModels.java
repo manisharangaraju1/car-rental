@@ -29,6 +29,8 @@ public class CarModels extends AppCompatActivity {
         setContentView(R.layout.activity_car_models);
         recyclerView = findViewById(R.id.car_models_recycler_view);
         initWidgets();
+        getSupportActionBar().setTitle("Car Models");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     @Override
@@ -57,7 +59,7 @@ public class CarModels extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         carModels = new ArrayList<>();
-        carModelsAdapter = new CarModelsAdapter(getApplicationContext(), carModels);
+        carModelsAdapter = new CarModelsAdapter(getApplicationContext(), carModels, this);
         carModelsAdapter.notifyDataSetChanged();
         recyclerView.setAdapter(carModelsAdapter);
     }

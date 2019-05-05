@@ -1,20 +1,25 @@
 package com.android.carrental.adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.android.carrental.CarOptionsFilter;
 import com.android.carrental.R;
 import com.android.carrental.model.Station;
+import com.google.api.Distribution;
 
 import java.util.List;
 
 public class StationAdapter extends RecyclerView.Adapter<StationAdapter.StationViewHolder> {
 
-    public static final String SEPARATOR = ", ";
+    private static final String SEPARATOR = ", ";
     private Context context;
     private List<Station> stations;
 
@@ -31,10 +36,23 @@ public class StationAdapter extends RecyclerView.Adapter<StationAdapter.StationV
 
     @Override
     public void onBindViewHolder(final StationViewHolder stationViewHolder, int i) {
-        Station station = stations.get(i);
+        final Station station = stations.get(i);
         stationViewHolder.station_address.setText(station.getAddress());
         stationViewHolder.station_city_and_state.setText(station.getCity().concat(SEPARATOR).concat(station.getState()));
         stationViewHolder.station_distance.setText(station.getDistance()+"");
+        stationViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openSelectedStationDetails(station);
+            }
+        });
+    }
+
+    private void openSelectedStationDetails(Station station){
+        Intent intent = new Intent(context, CarOptionsFilter.class);
+        intent.putExtra("selectedStaionDetails", station);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(intent);
     }
 
     @Override
