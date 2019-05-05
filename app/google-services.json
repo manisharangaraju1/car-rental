@@ -15,6 +15,22 @@
       },
       "oauth_client": [
         {
+          "client_id": "248707691628-lchk9n665q5a8op8l14t6ar9g530eclr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.android.carrental",
+            "certificate_hash": "89f60cf76c6465ddc53136d3839c2da67fdc6bea"
+          }
+        },
+        {
+          "client_id": "248707691628-kjvoqp7vc62k6f5hu3e3itvse1bnff7n.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.android.carrental",
+            "certificate_hash": "39224ee361e40a8da72faf6b994a3c3a04a666e5"
+          }
+        },
+        {
           "client_id": "248707691628-ksmnacvp7daehaqlqmqp4d687btqt7gl.apps.googleusercontent.com",
           "client_type": 3
         }
