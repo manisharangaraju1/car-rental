@@ -1,14 +1,18 @@
 package com.android.carrental;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.LinearLayout;
 import android.widget.NumberPicker;
 import android.widget.TimePicker;
+
+import com.android.carrental.view.CarModels;
 
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
@@ -27,6 +31,7 @@ public class CarOptionsFilter extends AppCompatActivity implements View.OnClickL
     private TimePicker picker;
     private NumberPicker minutePicker;
     private static final DecimalFormat FORMATTER = new DecimalFormat("00");
+    private LinearLayout carTypes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,11 +41,16 @@ public class CarOptionsFilter extends AppCompatActivity implements View.OnClickL
         date_selector = (Button) findViewById(R.id.date_selector);
         start_time_selector = (Button) findViewById(R.id.start_time);
         end_time_selector = (Button) findViewById(R.id.end_time);
+        carTypes = findViewById(R.id.car_types);
         calendar = Calendar.getInstance();
         search_cars.setOnClickListener(this);
         date_selector.setOnClickListener(this);
         start_time_selector.setOnClickListener(this);
         end_time_selector.setOnClickListener(this);
+        carTypes.setOnClickListener(this);
+
+        getSupportActionBar().setTitle("Choose your timings");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     @Override
@@ -55,7 +65,15 @@ public class CarOptionsFilter extends AppCompatActivity implements View.OnClickL
             case R.id.end_time:
                 selectEndTime();
                 break;
+            case R.id.car_types:
+                openCarModels();
+                break;
         }
+    }
+
+    private void openCarModels(){
+        Intent intent = new Intent(CarOptionsFilter.this, CarModels.class);
+        startActivity(intent);
     }
 
     private void selectStartTime() {

@@ -111,6 +111,7 @@
         android:layout_height="0dp"
         android:layout_margin="3dp"
         android:layout_weight="1.2"
+        android:id="@+id/car_types"
         android:orientation="horizontal"
         android:background="@drawable/border"
         android:weightSum="5">

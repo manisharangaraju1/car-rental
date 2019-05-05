@@ -29,6 +29,8 @@ public class CarModels extends AppCompatActivity {
         setContentView(R.layout.activity_car_models);
         recyclerView = findViewById(R.id.car_models_recycler_view);
         initWidgets();
+        getSupportActionBar().setTitle("Car Models");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     @Override

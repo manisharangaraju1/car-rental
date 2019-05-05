@@ -1,14 +1,19 @@
 package com.android.carrental.adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.android.carrental.CarOptionsFilter;
 import com.android.carrental.R;
 import com.android.carrental.model.Station;
+import com.google.api.Distribution;
 
 import java.util.List;
 
@@ -31,10 +36,28 @@ public class StationAdapter extends RecyclerView.Adapter<StationAdapter.StationV
 
     @Override
     public void onBindViewHolder(final StationViewHolder stationViewHolder, int i) {
-        Station station = stations.get(i);
+        final Station station = stations.get(i);
         stationViewHolder.station_address.setText(station.getAddress());
         stationViewHolder.station_city_and_state.setText(station.getCity().concat(SEPARATOR).concat(station.getState()));
         stationViewHolder.station_distance.setText(station.getDistance()+"");
+        stationViewHolder.parentLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openSelectedStationDetails(station);
+            }
+        });
+    }
+
+    private void openSelectedStationDetails(Station station){
+        Bundle clickedStationDetails = new Bundle();
+        clickedStationDetails.putString("StationId", station.getId());
+        clickedStationDetails.putString("Address", station.getAddress());
+        clickedStationDetails.putString("City", station.getCity());
+        clickedStationDetails.putString("Distance", station.getDistance());
+        clickedStationDetails.putString("State", station.getState());
+        Intent intent = new Intent(context, CarOptionsFilter.class);
+        intent.putExtra("stationDetails",clickedStationDetails);
+        context.startActivity(intent);
     }
 
     @Override
@@ -47,12 +70,14 @@ public class StationAdapter extends RecyclerView.Adapter<StationAdapter.StationV
         public TextView station_address;
         public TextView station_city_and_state;
         public TextView station_distance;
+        public LinearLayout parentLayout;
 
         public StationViewHolder(View itemView) {
             super(itemView);
             station_address = itemView.findViewById(R.id.station_address);
             station_city_and_state = itemView.findViewById(R.id.station_city_and_state);
             station_distance = itemView.findViewById(R.id.station_distance);
+            parentLayout = itemView.findViewById(R.id.parent_layout);
         }
     }
 
