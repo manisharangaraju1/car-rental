@@ -4,21 +4,23 @@ import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
-import android.content.res.Resources;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
-import android.widget.LinearLayout;
-import android.widget.NumberPicker;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
+import com.android.carrental.model.Car;
+import com.android.carrental.model.CarBooking;
 import com.android.carrental.model.CarModel;
 import com.android.carrental.model.Station;
+import com.android.carrental.view.AvailableCars;
 import com.android.carrental.view.CarModels;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -30,8 +32,6 @@ import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
@@ -56,13 +56,17 @@ public class CarOptionsFilter extends AppCompatActivity implements View.OnClickL
     private static final int REQUEST_CODE = 1;
     private Spinner car_stations_spinner_filter;
     private Station selectedStation;
+    private CarModel selectedCarModel;
     private List<Station> stations;
+    private ArrayList<Car> availableCars;
+    private List<CarBooking> carBookings;
+    private List<Car> allCars;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_car_options_filter);
-        search_cars = (Button) findViewById(R.id.searchCar);
+        search_cars = (Button) findViewById(R.id.search_car);
         date_selector = (Button) findViewById(R.id.date_selector);
         start_time_selector = (Button) findViewById(R.id.start_time);
         end_time_selector = (Button) findViewById(R.id.end_time);
@@ -77,6 +81,7 @@ public class CarOptionsFilter extends AppCompatActivity implements View.OnClickL
         end_time_selector.setOnClickListener(this);
         car_type_selector.setOnClickListener(this);
         selectedStation = getSelectedStation();
+        selectedCarModel = new CarModel("All Types", "");
         getSupportActionBar().setTitle("Choose Timings");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         fetchStations();
@@ -102,7 +107,20 @@ public class CarOptionsFilter extends AppCompatActivity implements View.OnClickL
             case R.id.car_type_selector:
                 selectCarType();
                 break;
+            case R.id.search_car:
+                searchAvailableCars();
+                break;
         }
+    }
+
+    private void searchAvailableCars() {
+        Intent intent = new Intent(this, AvailableCars.class);
+        intent.putExtra("selectedStaion", selectedStation);
+        intent.putExtra("selectedDate", date_selector.getText().toString());
+        intent.putExtra("selectedStartTime", start_time_selector.getText().toString());
+        intent.putExtra("selectedEndTime", end_time_selector.getText().toString());
+        intent.putExtra("selectedCarModel", selectedCarModel);
+        startActivity(intent);
     }
 
     private void selectCarType() {
@@ -165,8 +183,8 @@ public class CarOptionsFilter extends AppCompatActivity implements View.OnClickL
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_CODE && resultCode == Activity.RESULT_OK) {
-            CarModel carModel = (CarModel) data.getSerializableExtra("carmodel");
-            car_type.setText(carModel.getName());
+            selectedCarModel = (CarModel) data.getSerializableExtra("carmodel");
+            car_type.setText(selectedCarModel.getName());
         }
     }
 

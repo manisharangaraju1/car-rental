@@ -9,21 +9,23 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".userauth.LoginActivity" >
+        <activity android:name=".view.AvailableCars"></activity>
+        <activity android:name=".model.CarBooking" />
+        <activity android:name=".userauth.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".CarOptionsFilter"/>
-        <activity android:name=".view.CarModels"/>
+        <activity android:name=".CarOptionsFilter" />
+        <activity android:name=".view.CarModels" />
         <activity android:name=".admin.AddCar" />
         <activity android:name=".admin.AddCarModel" />
         <activity android:name=".admin.AddStation" />
         <activity android:name=".view.NearbyStations" />
         <activity android:name=".userauth.SignUpActivity" />
-        <activity android:name=".help.Help"/>
+        <activity android:name=".help.Help" />
     </application>
 
 </manifest>

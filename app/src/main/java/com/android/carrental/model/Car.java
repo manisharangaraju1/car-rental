@@ -1,6 +1,9 @@
 package com.android.carrental.model;
 
-public class Car {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class Car implements Parcelable {
 
     private final String id;
     private final String name;
@@ -56,5 +59,15 @@ public class Car {
 
     public int getRate() {
         return rate;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+
     }
 }
