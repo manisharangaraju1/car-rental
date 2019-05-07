@@ -32,6 +32,11 @@
     <string name="input_error_email_invalid">Please enter a valid email address</string>
     <string name="input_error_password">Please enter your password</string>
     <string name="input_error_password_length">Password Length should be atleast 6 characters</string>
+    <string name="input_error">Please Fill the details</string>
+    <string name="address_street_hint">Enter Your Street Address Here</string>
+    <string name="address_apt_number__hint">Enter Your Apt Number Here</string>
+    <string name="address_city_hint">Enter Your City Here</string>
+    <string name="address_zipcode_hint">Enter Your ZipCode Here</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

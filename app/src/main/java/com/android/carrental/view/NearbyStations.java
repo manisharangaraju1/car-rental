@@ -13,10 +13,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 import android.widget.Spinner;
 
+import com.android.carrental.MyAccount;
+import com.android.carrental.PaymentMethods;
 import com.android.carrental.help.Help;
 import com.android.carrental.R;
 import com.android.carrental.adapter.StationAdapter;
 import com.android.carrental.model.Station;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -75,9 +78,10 @@ public class NearbyStations extends AppCompatActivity implements NavigationView.
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         switch (menuItem.getItemId()) {
-            case R.id.nav_help:
-                startActivity(new Intent(NearbyStations.this, Help.class));
-                break;
+            case R.id.nav_help: startActivity(new Intent(NearbyStations.this,Help.class));break;
+            case R.id.nav_logout : FirebaseAuth.getInstance().signOut();finish();break;
+            case R.id.payment_methods: startActivity(new Intent(NearbyStations.this, PaymentMethods.class));break;
+            case R.id.nav_account : startActivity(new Intent(NearbyStations.this, MyAccount.class));
         }
         return false;
     }
