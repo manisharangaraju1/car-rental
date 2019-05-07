@@ -3,7 +3,9 @@ package com.android.carrental.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class Car implements Parcelable {
+import java.io.Serializable;
+
+public class Car implements Serializable {
 
     private final String id;
     private final String name;
@@ -61,13 +63,5 @@ public class Car implements Parcelable {
         return rate;
     }
 
-    @Override
-    public int describeContents() {
-        return 0;
-    }
 
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-
-    }
 }

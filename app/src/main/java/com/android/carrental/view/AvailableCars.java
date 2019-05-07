@@ -51,8 +51,8 @@ public class AvailableCars extends AppCompatActivity {
     }
 
     private void getUserSelectedData() {
-        selectedStation =  (Station) getIntent().getSerializableExtra("selectedStaion");
-        selectedCarModel =  (CarModel) getIntent().getSerializableExtra("selectedCarModel");
+        selectedStation = (Station) getIntent().getSerializableExtra("selectedStaion");
+        selectedCarModel = (CarModel) getIntent().getSerializableExtra("selectedCarModel");
         try {
 //            selectedDate = new SimpleDateFormat("dd MMM yyyy").parse(getIntent().getStringExtra("selectedDate"));
             selectedDate = getIntent().getStringExtra("selectedDate");
@@ -69,7 +69,7 @@ public class AvailableCars extends AppCompatActivity {
         allCars = getAllCars();
         allCarBookings = getAllCarBookings();
         availableCars = new ArrayList<>();
-        availableCarsAdapter = new AvailableCarsAdapter(getApplicationContext(), availableCars);
+        availableCarsAdapter = new AvailableCarsAdapter(getApplicationContext(), availableCars, this, selectedStation, selectedDate, selectedStartTime, selectedEndTime);
         availableCarsAdapter.notifyDataSetChanged();
         available_cars_recylerview.setAdapter(availableCarsAdapter);
     }
@@ -81,7 +81,13 @@ public class AvailableCars extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     Car car = snapshot.getValue(Car.class);
-                    allCars.add(car);
+                    if (car.getStation().getId().equals(selectedStation.getId())) {
+                        if (selectedCarModel.getName().equals(car.getModel().getName())) {
+                            allCars.add(car);
+                        } else if (selectedCarModel.getName().equals("All Types")) {
+                            allCars.add(car);
+                        }
+                    }
                 }
                 availableCars = getAvailableCars();
                 availableCarsAdapter.notifyDataSetChanged();
@@ -104,7 +110,6 @@ public class AvailableCars extends AppCompatActivity {
                     CarBooking carBooking = snapshot.getValue(CarBooking.class);
                     allCarBookings.add(carBooking);
                 }
-                availableCars = getAvailableCars();
                 availableCarsAdapter.notifyDataSetChanged();
             }
 
@@ -117,17 +122,15 @@ public class AvailableCars extends AppCompatActivity {
     }
 
     private List<Car> getAvailableCars() {
-        for(Car car: allCars) {
+        for (Car car : allCars) {
             boolean isCarBooked = false;
-            if (car.getStation().getId().equals(selectedStation.getId()) && car.getModel().getName().equals(selectedCarModel.getName())) {
-                for (CarBooking booking: allCarBookings) {
-                    if (booking.getDate().equals(selectedDate) && isTimeConflict(booking.getStartTime(), booking.getEndTime())) {
-                        isCarBooked = true;
-                    }
+            for (CarBooking booking : allCarBookings) {
+                if (booking.getDate().equals(selectedDate) && isTimeConflict(booking.getStartTime(), booking.getEndTime())) {
+                    isCarBooked = true;
                 }
-                if (!isCarBooked) {
-                    availableCars.add(car);
-                }
+            }
+            if (!isCarBooked) {
+                availableCars.add(car);
             }
         }
         return availableCars;

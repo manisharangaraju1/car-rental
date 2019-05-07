@@ -9,8 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.AvailableCars"></activity>
-        <activity android:name=".model.CarBooking" />
+        <activity android:name=".CarBookingDashboard"></activity>
+        <activity android:name=".view.AvailableCars" />
         <activity android:name=".userauth.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

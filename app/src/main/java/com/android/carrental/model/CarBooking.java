@@ -9,21 +9,33 @@ import java.util.Date;
 
 public class CarBooking {
 
-    private User user;
+    private String user;
     private Station station;
     private String date;
     private String startTime;
     private String endTime;
+    private Car car;
+    private int rate;
 
-    public CarBooking(User user, Station station, String date, String startTime, String endTime) {
+    public CarBooking() {
+
+    }
+
+    public CarBooking(String user, Car car, Station station, String date, String startTime, String endTime, int rate) {
         this.user = user;
         this.station = station;
         this.date = date;
         this.startTime = startTime;
         this.endTime = endTime;
+        this.car = car;
+        this.rate = rate;
     }
 
-    public User getUser() {
+    public Car getCar() {
+        return car;
+    }
+
+    public String getUser() {
         return user;
     }
 

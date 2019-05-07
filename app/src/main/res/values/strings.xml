@@ -9,6 +9,11 @@
     <string name="search_cars">Search</string>
     <string name="vehicle_filter">Vehicle Filter</string>
     <string name="all_type_cars">All Type Cars</string>
+    <string name="rate_label">Rate</string>
+    <string name="default_rate">$8</string>
+    <string name="payment">Payment</string>
+    <string name="confirm_reservation">Confirm Reservation</string>
+
 
     <string name="email">abc@example.com</string>
     <string name="password">password</string>

@@ -1,25 +1,41 @@
 package com.android.carrental.adapter;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.android.carrental.CarBookingDashboard;
 import com.android.carrental.R;
 import com.android.carrental.model.Car;
+import com.android.carrental.model.Station;
 
 import java.util.List;
 
 public class AvailableCarsAdapter extends RecyclerView.Adapter<AvailableCarsAdapter.AvailableCarViewHolder> {
 
+    private String startTime;
+    private String endTime;
+    private Station selectedStation;
+    private String selectedDate;
     private Context context;
     private List<Car> availableCars;
+    private Activity activity;
 
-    public AvailableCarsAdapter(Context context, List<Car> availableCars) {
+    public AvailableCarsAdapter(Context context, List<Car> availableCars, Activity activity, Station selectedStation, String selectedDate,
+                                String startTime, String endTime) {
         this.availableCars = availableCars;
         this.context = context;
+        this.selectedStation = selectedStation;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.selectedDate = selectedDate;
+        this.activity = activity;
     }
 
     @Override
@@ -43,6 +59,14 @@ public class AvailableCarsAdapter extends RecyclerView.Adapter<AvailableCarsAdap
     }
 
     private void showBookingDetails(Car availableCar) {
+        Intent intentToCarBooking = new Intent(activity, CarBookingDashboard.class);
+        intentToCarBooking.putExtra("selectedStation", selectedStation);
+        intentToCarBooking.putExtra("selectedCar", availableCar);
+        intentToCarBooking.putExtra("rate", availableCar.getRate());
+        intentToCarBooking.putExtra("startTime", startTime);
+        intentToCarBooking.putExtra("endTime", endTime);
+        intentToCarBooking.putExtra("selectedDate", selectedDate);
+        activity.startActivity(intentToCarBooking);
     }
 
     @Override

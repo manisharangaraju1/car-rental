@@ -111,7 +111,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                             Toast.makeText(getApplicationContext(),"INSIDE",Toast.LENGTH_SHORT).show();
                             String uid=mAuth.getCurrentUser().getUid();
                             final User newUser = new User(uid,cardId,name,email,phoneNumber,address);
-                            FirebaseDatabase.getInstance().getReference("Users")
+                            FirebaseDatabase.getInstance().getReference("users")
                                     .child(uid)
                                     .setValue(newUser).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
