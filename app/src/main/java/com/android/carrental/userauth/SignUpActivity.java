@@ -34,12 +34,12 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     private EditText editTextEmail;
     private EditText editTextPassword;
     private EditText editTextFullName;
-    private EditText editTextAddress;
+    private EditText editTextStreetAddress;
     private EditText editTextPhoneNumber;
-    private EditText editTextCardId;
+    private EditText editTextAptNumber;
+    private EditText editTextCity;
+    private EditText editTextZipCode;
 
-    private ProgressBar registerUserProgress;
-    private RelativeLayout mainContentRegister;
     private FirebaseAuth mAuth;
 
     @Override
@@ -50,11 +50,12 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         editTextEmail = (EditText) findViewById(R.id.user_email);
         editTextPassword = (EditText) findViewById(R.id.user_password);
         editTextFullName = (EditText) findViewById(R.id.name);
-        editTextAddress = (EditText) findViewById(R.id.address);
+        editTextStreetAddress = (EditText) findViewById(R.id.address_street);
+        editTextAptNumber = (EditText)findViewById(R.id.address_apt_number);
+        editTextCity = (EditText)findViewById(R.id.address_city);
+        editTextZipCode = (EditText)findViewById(R.id.address_zip_code);
+
         editTextPhoneNumber = (EditText)findViewById(R.id.phone_number);
-        editTextCardId = (EditText)findViewById(R.id.card_id);
-        registerUserProgress = (ProgressBar) findViewById(R.id.register_user_progress);
-        mainContentRegister = (RelativeLayout) findViewById(R.id.main_content_register);
         signup.setOnClickListener(this);
         mAuth = FirebaseAuth.getInstance();
 
@@ -62,19 +63,33 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
 
     private void registerUser() {
         final String name = editTextFullName.getText().toString().trim();
-        final String address = editTextAddress.getText().toString().trim();
+        final String street_address = editTextStreetAddress.getText().toString().trim();
+        final String aptNumber = editTextAptNumber.getText().toString().trim();
+        final String city = editTextCity.getText().toString().trim();
+        final String zipCode = editTextZipCode.getText().toString().trim();
+
+
         final String email = editTextEmail.getText().toString().trim();
         String password = editTextPassword.getText().toString().trim();
         final String phoneNumber = editTextPhoneNumber.getText().toString().trim();
-        final String cardId = editTextCardId.getText().toString().trim();
         if (name.isEmpty()) {
             editTextFullName.setError(getString(R.string.input_error_name));
             editTextFullName.requestFocus();
             return;
         }
-        if (address.isEmpty()) {
-            editTextAddress.setError(getString(R.string.input_error_nick_name));
-            editTextAddress.requestFocus();
+        if (street_address.isEmpty()) {
+            editTextStreetAddress.setError(getString(R.string.input_error));
+            editTextStreetAddress.requestFocus();
+            return;
+        }
+        if (city.isEmpty()) {
+            editTextCity.setError(getString(R.string.input_error));
+            editTextCity.requestFocus();
+            return;
+        }
+        if (zipCode.isEmpty()) {
+            editTextZipCode.setError(getString(R.string.input_error));
+            editTextZipCode.requestFocus();
             return;
         }
 
@@ -110,7 +125,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                         if (task.isSuccessful()) {
                             Toast.makeText(getApplicationContext(),"INSIDE",Toast.LENGTH_SHORT).show();
                             String uid=mAuth.getCurrentUser().getUid();
-                            final User newUser = new User(uid,cardId,name,email,phoneNumber,address);
+                            final User newUser = new User(uid,phoneNumber,name,email,phoneNumber,street_address,aptNumber,city,zipCode);
                             FirebaseDatabase.getInstance().getReference("users")
                                     .child(uid)
                                     .setValue(newUser).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -118,7 +133,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if(task.isSuccessful()){
                                         Toast.makeText(getApplicationContext(),"Registered Successfully",Toast.LENGTH_SHORT).show();
-                                        finish();
+                                        openLoginActivity();
                                     }else{
                                         Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_LONG).show();
                                     }
@@ -140,7 +155,6 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         }
     }
     private void openLoginActivity() {
-        registerUserProgress.setVisibility(View.GONE);
         Intent returnToLogin = new Intent();
         returnToLogin.putExtra(EMAIL_KEY, editTextEmail.getText().toString());
         returnToLogin.putExtra(PASSWORD_KEY, editTextPassword.getText().toString());
