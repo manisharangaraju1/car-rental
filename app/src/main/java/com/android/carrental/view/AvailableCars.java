@@ -47,6 +47,7 @@ public class AvailableCars extends AppCompatActivity {
         allCarBookings = new ArrayList<>();
         availableCars = new ArrayList<>();
         getUserSelectedData();
+        getSupportActionBar().setTitle("Available Cars");
         initWidgets();
     }
 

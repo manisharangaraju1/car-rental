@@ -50,6 +50,7 @@ public class MyAccount extends AppCompatActivity implements View.OnClickListener
         editDetails = (Button)findViewById(R.id.edit_details);
         intent = new Intent(MyAccount.this,EditMyAccount.class);
         editDetails.setOnClickListener(this);
+        getSupportActionBar().setTitle("My Account");
     }
 
     @Override

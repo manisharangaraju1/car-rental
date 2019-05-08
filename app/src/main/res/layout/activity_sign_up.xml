@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SignUpActivity">
+    tools:context=".userauth.SignUpActivity">
     <ProgressBar
         android:id="@+id/register_user_progress"
         android:layout_width="60dp"
@@ -20,18 +20,6 @@
         android:layout_width="match_parent"
         android:orientation="vertical"
         android:layout_height="match_parent">
-
-        <TextView
-            android:id="@+id/textEmailReg"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"
-            android:text="@string/email"
-            android:textColor="@color/black"
-            android:textSize="22sp" />
-
 
         <EditText
             android:id="@+id/user_email"
