@@ -21,7 +21,6 @@
             android:id="@+id/name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textStyle="bold"
             android:textColor = "@color/common_google_signin_btn_text_dark_focused"
             android:textSize="20sp"/>
     </LinearLayout>
@@ -39,7 +38,6 @@
             android:id="@+id/email"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textStyle="bold"
             android:textColor = "@color/common_google_signin_btn_text_dark_focused"
             android:textSize="20sp"/>
     </LinearLayout>
@@ -58,7 +56,6 @@
             android:id="@+id/phone_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textStyle="bold"
             android:textColor = "@color/common_google_signin_btn_text_dark_focused"
             android:textSize="20sp"/>
     </LinearLayout>
@@ -76,7 +73,6 @@
             android:id="@+id/street_address"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textStyle="bold"
             android:textColor = "@color/common_google_signin_btn_text_dark_focused"
             android:textSize="20sp"/>
     </LinearLayout>
@@ -94,7 +90,6 @@
             android:id="@+id/apt_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textStyle="bold"
             android:textColor = "@color/common_google_signin_btn_text_dark_focused"
             android:textSize="20sp"/>
     </LinearLayout>
@@ -112,7 +107,6 @@
             android:id="@+id/city"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textStyle="bold"
             android:textColor = "@color/common_google_signin_btn_text_dark_focused"
             android:textSize="20sp"/>
     </LinearLayout>
@@ -130,7 +124,6 @@
             android:id="@+id/zip_code"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textStyle="bold"
             android:textColor = "@color/common_google_signin_btn_text_dark_focused"
             android:textSize="20sp"/>
     </LinearLayout>
@@ -139,6 +132,9 @@
         android:id="@+id/edit_details"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:textSize="17sp"
+        android:textColor="@color/white"
         android:text="Edit"/>
 
 </LinearLayout>

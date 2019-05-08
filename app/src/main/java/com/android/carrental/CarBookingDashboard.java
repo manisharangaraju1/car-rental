@@ -44,6 +44,7 @@ public class CarBookingDashboard extends AppCompatActivity implements View.OnCli
         start_time = (TextView) findViewById(R.id.start_time_for_booking);
         end_time = (TextView) findViewById(R.id.end_time_for_booking);
         confirm_booking.setOnClickListener(this);
+        getSupportActionBar().setTitle("Confirm Reservation");
         fetchSelectedCarDetails();
     }
 

@@ -82,8 +82,7 @@ public class CarOptionsFilter extends AppCompatActivity implements View.OnClickL
         car_type_selector.setOnClickListener(this);
         selectedStation = getSelectedStation();
         selectedCarModel = new CarModel("All Types", "");
-        getSupportActionBar().setTitle("Choose Timings");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("Search Cars");
         fetchStations();
     }
 

@@ -49,6 +49,7 @@ public class EditMyAccount extends AppCompatActivity implements View.OnClickList
             editTextAptNumber.setText(bundle.getString("aptNumber"));
             editTextCity.setText(bundle.getString("city"));
             editTextZipCode.setText(bundle.getString("zipCode"));
+            getSupportActionBar().setTitle("Edit Account");
         }
     }
 

@@ -58,6 +58,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         editTextPhoneNumber = (EditText)findViewById(R.id.phone_number);
         signup.setOnClickListener(this);
         mAuth = FirebaseAuth.getInstance();
+        getSupportActionBar().setTitle("Register");
 
     }
 

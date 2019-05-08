@@ -19,6 +19,7 @@ import com.android.carrental.help.Help;
 import com.android.carrental.R;
 import com.android.carrental.adapter.StationAdapter;
 import com.android.carrental.model.Station;
+import com.android.carrental.userauth.LoginActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -79,7 +80,7 @@ public class NearbyStations extends AppCompatActivity implements NavigationView.
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         switch (menuItem.getItemId()) {
             case R.id.nav_help: startActivity(new Intent(NearbyStations.this,Help.class));break;
-            case R.id.nav_logout : FirebaseAuth.getInstance().signOut();finish();break;
+            case R.id.nav_logout : FirebaseAuth.getInstance().signOut();startActivity(new Intent(NearbyStations.this, LoginActivity.class));break;
             case R.id.payment_methods: startActivity(new Intent(NearbyStations.this, PaymentMethods.class));break;
             case R.id.nav_account : startActivity(new Intent(NearbyStations.this, MyAccount.class));
         }

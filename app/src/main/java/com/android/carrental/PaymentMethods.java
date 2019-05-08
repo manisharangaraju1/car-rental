@@ -38,6 +38,7 @@ public class PaymentMethods extends AppCompatActivity implements View.OnClickLis
         editTextCvv = (EditText)findViewById(R.id.cvv);
         zip_code = (EditText)findViewById(R.id.zip_code);
         save_card_details.setOnClickListener(this);
+        getSupportActionBar().setTitle("Edit Payment Method");
 
         picker_month.setMinValue(1);
         picker_month.setMaxValue(12);

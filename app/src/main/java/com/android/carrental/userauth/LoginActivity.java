@@ -46,6 +46,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         firebaseAuth = FirebaseAuth.getInstance();
         loginButton.setOnClickListener(this);
         registerButton.setOnClickListener(this);
+        getSupportActionBar().setTitle("Login");
     }
     @Override
     public void onClick(View v) {
