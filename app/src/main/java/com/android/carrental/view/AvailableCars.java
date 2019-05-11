@@ -126,7 +126,7 @@ public class AvailableCars extends AppCompatActivity {
         for (Car car : allCars) {
             boolean isCarBooked = false;
             for (CarBooking booking : allCarBookings) {
-                if (booking.getDate().equals(selectedDate) && isTimeConflict(booking.getStartTime(), booking.getEndTime())) {
+                if (booking.getBookingDate().equals(selectedDate) && isTimeConflict(booking.getStartTime(), booking.getEndTime())) {
                     isCarBooked = true;
                 }
             }
