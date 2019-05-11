@@ -11,7 +11,7 @@ public class CarBooking {
 
     private String user;
     private Station station;
-    private String date;
+    private String bookingDate;
     private String startTime;
     private String endTime;
     private Car car;
@@ -21,10 +21,10 @@ public class CarBooking {
 
     }
 
-    public CarBooking(String user, Car car, Station station, String date, String startTime, String endTime, int rate) {
+    public CarBooking(String user, Car car, Station station, String bookingDate, String startTime, String endTime, int rate) {
         this.user = user;
         this.station = station;
-        this.date = date;
+        this.bookingDate = bookingDate;
         this.startTime = startTime;
         this.endTime = endTime;
         this.car = car;
@@ -43,8 +43,8 @@ public class CarBooking {
         return station;
     }
 
-    public String getDate() {
-        return date;
+    public String getBookingDate() {
+        return bookingDate;
     }
 
     public String getStartTime() {

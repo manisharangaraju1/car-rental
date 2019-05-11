@@ -32,7 +32,7 @@ public class AddStation extends AppCompatActivity implements View.OnClickListene
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_station);
+        setContentView(R.layout.activity_add_station);
         save_address = (Button) findViewById(R.id.save_station);
         address = (EditText) findViewById(R.id.address);
         city = (EditText) findViewById(R.id.city);

@@ -11,7 +11,6 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
-import android.widget.Spinner;
 
 import com.android.carrental.MyAccount;
 import com.android.carrental.PaymentMethods;
@@ -43,7 +42,7 @@ public class NearbyStations extends AppCompatActivity implements NavigationView.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.activity_nearby_stations);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
@@ -79,10 +78,21 @@ public class NearbyStations extends AppCompatActivity implements NavigationView.
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         switch (menuItem.getItemId()) {
-            case R.id.nav_help: startActivity(new Intent(NearbyStations.this,Help.class));break;
-            case R.id.nav_logout : FirebaseAuth.getInstance().signOut();startActivity(new Intent(NearbyStations.this, LoginActivity.class));break;
-            case R.id.payment_methods: startActivity(new Intent(NearbyStations.this, PaymentMethods.class));break;
-            case R.id.nav_account : startActivity(new Intent(NearbyStations.this, MyAccount.class));
+            case R.id.nav_help:
+                startActivity(new Intent(NearbyStations.this, Help.class));
+                break;
+            case R.id.nav_logout:
+                FirebaseAuth.getInstance().signOut();
+                startActivity(new Intent(NearbyStations.this, LoginActivity.class));
+                break;
+            case R.id.payment_methods:
+                startActivity(new Intent(NearbyStations.this, PaymentMethods.class));
+                break;
+            case R.id.nav_account:
+                startActivity(new Intent(NearbyStations.this, MyAccount.class));
+            case R.id.my_bookings:
+                startActivity(new Intent(this, MyBookings.class));
+                break;
         }
         return false;
     }

@@ -14,6 +14,7 @@ import com.android.carrental.model.Car;
 import com.android.carrental.model.CarBooking;
 import com.android.carrental.model.CarModel;
 import com.android.carrental.model.Station;
+import com.android.carrental.view.MyBookings;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -64,7 +65,7 @@ public class CarBookingDashboard extends AppCompatActivity implements View.OnCli
         String user = FirebaseAuth.getInstance().getCurrentUser().getUid();
         String startTime = getIntent().getExtras().getString("startTime");
         String endTime = getIntent().getExtras().getString("endTime");
-        String date = getIntent().getExtras().getString("date");
+        String date = getIntent().getExtras().getString("selectedDate");
         int rate = getIntent().getExtras().getInt("rate");
         CarBooking carBooking = new CarBooking(user, selectedCar, selectedStation, date, startTime, endTime, rate);
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
@@ -72,15 +73,9 @@ public class CarBookingDashboard extends AppCompatActivity implements View.OnCli
         databaseReference.child("bookings").child(id).setValue(carBooking).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
-                Log.i("saved", "saved");
                 Toast.makeText(getApplicationContext(), "Booking Confirmed", Toast.LENGTH_SHORT).show();
-            }
-        });
-        databaseReference.child("users").child(user).child("bookings").child(id).setValue(carBooking).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                Log.i("saved", "saved");
-                Toast.makeText(getApplicationContext(), "Booking Confirmed", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getApplicationContext(), MyBookings.class);
+                startActivity(intent);
             }
         });
     }
