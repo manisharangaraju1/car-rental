@@ -31,3 +31,5 @@ public class Help extends AppCompatActivity {
         mRecyclerView.setAdapter(mAdapter);
     }
 }
+
+

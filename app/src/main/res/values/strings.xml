@@ -38,6 +38,12 @@
     <string name="address_city_hint">Enter Your City Here</string>
     <string name="address_zipcode_hint">Enter Your ZipCode Here</string>
     <string name="title_registration">Registration</string>
+    <string name="car_name_hint">Car Name</string>
+    <string name="car_color_hint">Car Color</string>
+    <string name="car_number_hint">Car Number</string>
+    <string name="car_rate_hint">Car Rate</string>
+    <string name="save">Save</string>
+    <string name="all_types">All Types</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
