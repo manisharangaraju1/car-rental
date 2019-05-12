@@ -46,6 +46,14 @@
     <string name="save">Save</string>
     <string name="all_types">All Types</string>
 
+    <!--guide-->
+    <string name="title_help">Guide to rent a car</string>
+    <string name="guide"> -> Go to the home page where you can see   multiple stations that are present.\n\n
+-> Choose the station that is closest to you.\n\n
+-> Next,you enter the date and timings for which you want to rent a car.\n\n
+-> Dont forget to choose the type of car that you would like to rent.\n\n
+-> Review your order and confirm to reserve your car.</string>
+
 
     <!--payment details string values-->
     <string name="card_number">Card Number</string>
