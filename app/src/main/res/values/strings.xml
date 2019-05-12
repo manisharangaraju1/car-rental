@@ -52,6 +52,12 @@
     <string name="street_on_my_account">Street</string>
     <string name="apt_on_my_account">APT</string>
 
+    <!--booking details string values-->
+    <string name="extend_trip_label">Extend</string>
+    <string name="pickup_label">Pickup</string>
+    <string name="charges_label">Cost</string>
+    <string name="finish_trip_label">Finish</string>
+
 </resources>
 
 
