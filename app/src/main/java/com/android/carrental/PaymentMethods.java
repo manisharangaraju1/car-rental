@@ -17,22 +17,16 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
+import java.util.regex.Pattern;
+
 
 public class PaymentMethods extends AppCompatActivity implements View.OnClickListener  {
-    private static final int MAX_YEAR = 2099;
-    private DatePickerDialog datePickerDialog;
-    int exp_month;
-    int exp_year;
     Button save_card_details;
     EditText card_number;
     EditText editTextCvv;
     EditText zip_code;
-    Button date_selector;
-    private Calendar calendar;
-    public static final String DATE_FORMAT = "MM yyyy";
+    EditText exp_month;
+    EditText exp_year;
 
 
 
@@ -46,29 +40,48 @@ public class PaymentMethods extends AppCompatActivity implements View.OnClickLis
         zip_code = (EditText)findViewById(R.id.zip_code);
         save_card_details.setOnClickListener(this);
         getSupportActionBar().setTitle("Edit Payment Method");
-        date_selector = (Button)findViewById(R.id.date_selector);
-        calendar = Calendar.getInstance();
-        date_selector.setOnClickListener(this);
-
+        exp_month = (EditText)findViewById(R.id.exp_month);
+        exp_year = (EditText)findViewById(R.id.exp_year);
     }
 
     @Override
     public void onClick(View v) {
         switch(v.getId()){
             case R.id.save_card_details : validateDetails();break;
-            case R.id.date_selector : selectDate();break;
-
         }
     }
     private void validateDetails(){
         String cardNumber = card_number.getText().toString().trim();
         String cvv = editTextCvv.getText().toString().trim();
         String zipCode = zip_code.getText().toString().trim();
+        String monthString = exp_month.getText().toString().trim();
+        String yearString = exp_year.getText().toString().trim();
         if (cardNumber.isEmpty()) {
             card_number.setError(getString(R.string.input_error));
             card_number.requestFocus();
             return;
         }
+        if(monthString.isEmpty()){
+            exp_month.setError(getString(R.string.input_error));
+            exp_month.requestFocus();
+            return;
+        }
+        if(yearString.isEmpty()){
+            exp_year.setError(getString(R.string.input_error));
+            exp_year.requestFocus();
+            return;
+        }
+        if(monthString.length() !=2 && Integer.parseInt(monthString) <13 && Integer.parseInt(monthString) >0){
+            exp_month.setError(getString(R.string.input_error_date_month));
+            exp_month.requestFocus();
+            return;
+        }
+        if(yearString.length() != 4 && Integer.parseInt(yearString) < 2019){
+            exp_year.setError(getString(R.string.input_error_date_year));
+            exp_year.requestFocus();
+            return;
+        }
+
         if (cvv.isEmpty()) {
             editTextCvv.setError(getString(R.string.input_error));
             editTextCvv.requestFocus();
@@ -79,9 +92,8 @@ public class PaymentMethods extends AppCompatActivity implements View.OnClickLis
             zip_code.requestFocus();
             return;
         }
-        if(exp_month == 0) exp_month = 1;
-        if(exp_year ==0) exp_year = 2019;
-        CreditCard card = new CreditCard(cardNumber,cvv,zipCode,exp_month+"",exp_year+"");
+
+        CreditCard card = new CreditCard(cardNumber,cvv,zipCode,monthString,yearString);
         FirebaseDatabase.getInstance().getReference("users")
                 .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("PaymentCards")
                 .setValue(card).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -96,22 +108,5 @@ public class PaymentMethods extends AppCompatActivity implements View.OnClickLis
             }
         });
     }
-    private void selectDate() {
-        datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                date_selector.setText(formatDate(year, month, dayOfMonth));
-            }
-        }, calendar.get(Calendar.DAY_OF_MONTH), calendar.get(Calendar.MONTH), calendar.get(Calendar.YEAR));
-        datePickerDialog.show();
-    }
 
-    private static String formatDate(int year, int month, int day) {
-        Calendar cal = Calendar.getInstance();
-        cal.setTimeInMillis(0);
-        cal.set(year, month, day);
-        Date date = cal.getTime();
-        SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT);
-        return sdf.format(date);
-    }
 }
