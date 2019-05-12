@@ -22,13 +22,15 @@
             android:layout_weight="0.7"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:text="@string/name_on_my_account" />
+            android:text="@string/name_on_my_account"
+            android:textColor="@color/black" />
 
         <EditText
             android:id="@+id/name"
             android:layout_width="0dp"
             android:textSize="18sp"
             android:layout_height="wrap_content"
+            android:textColor="@color/black"
             android:layout_weight="1.3" />
     </LinearLayout>
     <LinearLayout
@@ -46,6 +48,7 @@
             android:textStyle="bold"
             android:textSize="18sp"
             android:layout_weight="0.7"
+            android:textColor="@color/black"
             android:text="@string/email_on_my_account" />
 
         <EditText
@@ -53,6 +56,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:textSize="18sp"
+            android:textColor="@color/black"
             android:layout_weight="1.3" />
     </LinearLayout>
     <LinearLayout
@@ -70,6 +74,7 @@
             android:textSize="18sp"
             android:textStyle="bold"
             android:layout_weight="0.7"
+            android:textColor="@color/black"
             android:text="@string/phone_on_my_account" />
 
         <EditText
@@ -77,6 +82,7 @@
             android:layout_weight="1.3"
             android:textSize="18sp"
             android:layout_width="0dp"
+            android:textColor="@color/black"
             android:layout_height="wrap_content" />
     </LinearLayout>
     <LinearLayout
@@ -94,6 +100,7 @@
             android:textSize="18sp"
             android:textStyle="bold"
             android:layout_weight="0.7"
+            android:textColor="@color/black"
             android:text="@string/street_on_my_account" />
 
         <EditText
@@ -101,6 +108,7 @@
             android:layout_weight="1.3"
             android:layout_width="0dp"
             android:textSize="18sp"
+            android:textColor="@color/black"
             android:layout_height="wrap_content" />
     </LinearLayout>
 
@@ -119,6 +127,7 @@
             android:textSize="18sp"
             android:textStyle="bold"
             android:layout_weight="0.7"
+            android:textColor="@color/black"
             android:text="@string/apt_on_my_account" />
 
         <EditText
@@ -126,6 +135,7 @@
             android:textSize="18sp"
             android:layout_weight="1.3"
             android:layout_width="0dp"
+            android:textColor="@color/black"
             android:layout_height="wrap_content" />
     </LinearLayout>
     <LinearLayout
@@ -143,6 +153,7 @@
             android:textStyle="bold"
             android:textSize="18sp"
             android:layout_weight="0.7"
+            android:textColor="@color/black"
             android:text="@string/city_on_my_account" />
 
         <EditText
@@ -150,6 +161,7 @@
             android:layout_weight="1.3"
             android:textSize="18sp"
             android:layout_width="0dp"
+            android:textColor="@color/black"
             android:layout_height="wrap_content" />
     </LinearLayout>
     <LinearLayout
@@ -167,6 +179,7 @@
             android:textSize="18sp"
             android:textStyle="bold"
             android:layout_weight="0.7"
+            android:textColor="@color/black"
             android:text="@string/zip_on_my_account" />
 
         <EditText
@@ -174,6 +187,7 @@
             android:layout_weight="1.3"
             android:textSize="18sp"
             android:layout_width="0dp"
+            android:textColor="@color/black"
             android:layout_height="wrap_content" />
     </LinearLayout>
     <Button

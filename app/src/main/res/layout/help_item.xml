@@ -14,6 +14,7 @@
             android:layout_height="wrap_content"
             android:text="Help Issues"
             android:textStyle="bold"
+            android:textColor="@color/black"
             android:textSize="20sp"/>
         <ImageView
             android:id="@+id/send_icon"

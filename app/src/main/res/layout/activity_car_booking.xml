@@ -25,7 +25,7 @@
                 android:layout_margin="10dp"
                 android:layout_weight="1"
                 android:gravity="left|center"
-                android:tint="@color/location"
+                android:tint="@color/black"
                 android:src="@drawable/ic_directions_car_black_24dp" />
 
             <LinearLayout
@@ -39,12 +39,14 @@
                     android:id="@+id/car_name_for_booking"
                     android:layout_width="match_parent"
                     android:textSize="15sp"
+                    android:textColor="@color/black"
                     android:layout_height="match_parent" />
 
                 <TextView
                     android:id="@+id/car_color_for_booking"
                     android:layout_width="match_parent"
                     android:textSize="15sp"
+                    android:textColor="@color/black"
                     android:layout_height="match_parent" />
 
             </LinearLayout>
@@ -69,6 +71,7 @@
             android:layout_weight="1"
             android:gravity="left|center"
             android:text="@string/date_label"
+            android:textColor="@color/black"
             android:textSize="18sp" />
 
         <TextView
@@ -103,6 +106,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/start_time_label"
+                android:textColor="@color/black"
                 android:textSize="18sp" />
 
             <Button
@@ -114,7 +118,7 @@
                 android:focusable="false"
                 android:gravity="left|center"
                 android:text="@string/default_start_time"
-                android:textColor="@color/location"
+                android:textColor="@color/black"
                 android:textSize="18sp" />
 
         </LinearLayout>
@@ -132,6 +136,7 @@
                 android:layout_weight="1"
                 android:gravity="right"
                 android:text="@string/end_time_label"
+                android:textColor="@color/black"
                 android:textSize="18sp" />
 
             <Button
@@ -143,7 +148,7 @@
                 android:focusable="false"
                 android:gravity="right|center"
                 android:text="@string/default_end_time"
-                android:textColor="@color/location"
+                android:textColor="@color/black"
                 android:textSize="18sp" />
         </LinearLayout>
 
@@ -165,6 +170,7 @@
             android:layout_weight="1"
             android:gravity="left|center"
             android:text="@string/rate_label"
+            android:textColor="@color/black"
             android:textSize="18sp" />
 
         <Button
@@ -177,7 +183,7 @@
             android:layout_marginRight="20dp"
             android:gravity="right|center"
             android:text="@string/default_rate"
-            android:textColor="@color/location"
+            android:textColor="@color/black"
             android:textSize="18sp" />
     </LinearLayout>
 
@@ -197,6 +203,7 @@
             android:layout_weight="5"
             android:gravity="left|center"
             android:text="@string/payment"
+            android:textColor="@color/black"
             android:textSize="18sp" />
 
         <ImageView
@@ -204,7 +211,7 @@
             android:layout_height="30dp"
             android:layout_weight="1"
             android:gravity="right"
-            android:tint="@color/location"
+            android:tint="@color/black"
             android:src="@drawable/ic_payment_black_24dp" />
 
     </LinearLayout>

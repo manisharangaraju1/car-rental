@@ -13,14 +13,15 @@
         android:orientation="vertical">
         <TextView
             android:id="@+id/card_number_label"
-            android:text="Card Number"
+            android:text="@string/card_number"
             android:layout_marginTop="0dp"
+            android:layout_marginStart="20dp"
             android:layout_width="match_parent"
             android:textSize="17sp"
             android:gravity="left|center"
             android:padding="10dp"
             android:textStyle="bold"
-            android:textColorHighlight="@color/black"
+            android:textColor="@color/black"
             android:layout_height="40dp" />
         <LinearLayout
             android:layout_width="match_parent"
@@ -41,6 +42,7 @@
                 android:padding="10dp"
                 android:textStyle="bold"
                 android:layout_marginStart="2dp"
+                android:layout_marginEnd="30dp"
                 android:inputType="number"
                 android:background="@drawable/border"
                 android:layout_height="60dp" />
@@ -51,22 +53,26 @@
             android:orientation="horizontal">
             <TextView
                 android:id="@+id/exp_date_label"
-                android:text="Exp. Date"
+                android:text="@string/exp_date"
                 android:layout_width="wrap_content"
                 android:textSize="15sp"
-                android:layout_marginStart="30dp"
+                android:layout_marginStart="20dp"
                 android:gravity="left|center"
                 android:padding="10dp"
                 android:textStyle="bold"
+                android:textColor="@color/black"
                 android:layout_height="40dp" />
             <TextView
                 android:id="@+id/cvv_label"
-                android:text="Cvv"
+                android:text="@string/cvv"
                 android:layout_width="wrap_content"
                 android:textSize="15sp"
-                android:layout_marginStart="160dp"
+                android:layout_marginStart="200dp"
+                android:layout_marginEnd="30dp"
                 android:gravity="left|center"
                 android:padding="10dp"
+                android:textColor="@color/black"
+
                 android:textStyle="bold"
                 android:layout_height="40dp" />
         </LinearLayout>
@@ -75,20 +81,19 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <NumberPicker
-                android:id="@+id/picker_month"
+            <Button
+                android:id="@+id/date_selector"
+                android:layout_width="120dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:padding="0dp"
+                android:background="@drawable/border"
+                android:focusable="false"
+                android:gravity="center"
                 android:layout_marginStart="30dp"
-                android:layout_marginTop="-50dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"></NumberPicker>
-
-            <NumberPicker
-                android:id="@+id/picker_year"
-                android:layout_marginTop="-50dp"
-                android:layout_marginLeft="2dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-            </NumberPicker>
+                android:text="@string/default_date"
+                android:textColor="@color/black"
+                android:textSize="17sp" />
 
             <EditText
                 android:id="@+id/cvv"
@@ -98,7 +103,8 @@
                 android:textColor="@color/location"
                 android:padding="10dp"
                 android:inputType="number"
-                android:layout_marginStart="120dp"
+                android:layout_marginStart="180dp"
+                android:layout_marginEnd="30dp"
                 android:textStyle="bold"
                 android:background="@drawable/border"
                 android:layout_height="60dp" />
@@ -106,11 +112,12 @@
         </LinearLayout>
         <TextView
             android:id="@+id/zip_code_label"
-            android:text="Zip Code"
+            android:text="@string/zip_code"
+            android:textColor="@color/black"
+
             android:layout_width="wrap_content"
             android:textSize="15sp"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="-40dp"
+            android:layout_marginStart="20dp"
             android:gravity="left|center"
             android:padding="10dp"
             android:textStyle="bold"
@@ -125,6 +132,7 @@
             android:padding="10dp"
             android:textStyle="bold"
             android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
             android:background="@drawable/border"
             android:layout_height="60dp" />
 
@@ -133,7 +141,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
-            android:text="SAVE"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:text="@string/save"
             android:background="@color/colorPrimary"
             android:textSize="17sp"
             android:textColor="@color/white"/>
