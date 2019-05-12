@@ -15,6 +15,7 @@ import com.android.carrental.R;
 import com.android.carrental.model.Car;
 import com.android.carrental.model.CarBooking;
 import com.android.carrental.model.Station;
+import com.android.carrental.view.MyBookingDetails;
 
 import java.util.List;
 
@@ -52,14 +53,9 @@ public class BookingsAdapter extends RecyclerView.Adapter<BookingsAdapter.Bookin
     }
 
     private void showBookingDetails(CarBooking booking) {
-//        Intent intentToCarBooking = new Intent(activity, CarBookingDashboard.class);
-//        intentToCarBooking.putExtra("selectedStation", selectedStation);
-//        intentToCarBooking.putExtra("selectedCar", availableCar);
-//        intentToCarBooking.putExtra("rate", availableCar.getRate());
-//        intentToCarBooking.putExtra("startTime", startTime);
-//        intentToCarBooking.putExtra("endTime", endTime);
-//        intentToCarBooking.putExtra("selectedDate", selectedDate);
-//        activity.startActivity(intentToCarBooking);
+        Intent intentToBookingDetails = new Intent(activity, MyBookingDetails.class);
+        intentToBookingDetails.putExtra("booking", booking);
+        activity.startActivity(intentToBookingDetails);
     }
 
     @Override

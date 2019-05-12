@@ -3,7 +3,6 @@ package com.android.carrental.adapter;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -53,12 +52,12 @@ public class AvailableCarsAdapter extends RecyclerView.Adapter<AvailableCarsAdap
         availableCarViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showBookingDetails(availableCar);
+                showBookingDashboard(availableCar);
             }
         });
     }
 
-    private void showBookingDetails(Car availableCar) {
+    private void showBookingDashboard(Car availableCar) {
         Intent intentToCarBooking = new Intent(activity, CarBookingDashboard.class);
         intentToCarBooking.putExtra("selectedStation", selectedStation);
         intentToCarBooking.putExtra("selectedCar", availableCar);

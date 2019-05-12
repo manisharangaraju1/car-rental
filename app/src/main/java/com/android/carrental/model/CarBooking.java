@@ -5,9 +5,10 @@ import android.os.Bundle;
 
 import com.android.carrental.R;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class CarBooking {
+public class CarBooking implements Serializable {
 
     private String user;
     private Station station;
@@ -16,6 +17,10 @@ public class CarBooking {
     private String endTime;
     private Car car;
     private int rate;
+
+    public int getRate() {
+        return rate;
+    }
 
     public CarBooking() {
 
